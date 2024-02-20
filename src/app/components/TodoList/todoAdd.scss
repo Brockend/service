@@ -1,0 +1,26 @@
+.todoAdd{
+    &__wrapper {
+        background-color: #797979;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        display: flex;
+        gap: 1rem;
+    }
+
+    &__input {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 0.625rem;
+
+        label {
+            color: #fff;
+        }
+
+        input {
+            padding: 0.5rem;
+            width: 18.75rem;
+            border-radius: 0.3rem;
+        }
+    }
+}
