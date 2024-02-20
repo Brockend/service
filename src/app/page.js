@@ -1,5 +1,3 @@
-import TodoList from "./components/TodoAdd/TodoAdd";
-
 import "./globals.scss";
 import "./main-page.scss";
 
