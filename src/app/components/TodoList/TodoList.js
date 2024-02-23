@@ -13,20 +13,25 @@ const TodoList = () => {
     const [activeTab, setActiveTab] = useState(1);
     const [completedTodos, setCompletedTodos] = useState([]);
 
-
     const handleAddClick = () => {
         let newTodoItem = {
             title: title,
             description: description
         }
 
-        let updatedTodoList = [...allTodos];
-        updatedTodoList.push(newTodoItem);
-        setAllTodos(updatedTodoList);
-        setTitle("");
-        setDescription("");
+        if (newTodoItem.title) {
+            let updatedTodoList = [...allTodos];
+            updatedTodoList.push(newTodoItem);
+            setAllTodos(updatedTodoList);
+            setTitle("");
+            setDescription("");
+            setActiveTab(1);
 
-        localStorage.setItem('todoList', JSON.stringify(updatedTodoList));
+            localStorage.setItem('todoTabs', 1);
+            localStorage.setItem('todoList', JSON.stringify(updatedTodoList));
+        } else {
+
+        }    
     }
 
     const handleDeleteClick = (index) => {
@@ -50,13 +55,23 @@ const TodoList = () => {
         const dd = date.getDate();
         let mm = date.getMonth() + 1;
         const yyyy = date.getFullYear();
-        const h = date.getHours();
-        const m = date.getMinutes();
+        let h = date.getHours();
+        let m = date.getMinutes();
 
         mm = mm.toString();
+        h = h.toString();
+        m = m.toString();
 
         if (mm.length === 1) {
             mm = `0${mm}`
+        }
+
+        if (h.length === 1) {
+            h = `0${h}`
+        }
+
+        if (m.length === 1) {
+            m = `0${m}`
         }
 
         const completedOn = `${dd}.${mm}.${yyyy} at ${h}:${m}`;
@@ -83,8 +98,6 @@ const TodoList = () => {
         let savedData = JSON.parse(localStorage.getItem('todoList'));
         let savedCompletedData = JSON.parse(localStorage.getItem('todoCompletedList'));
         let savedTodoTabsState = localStorage.getItem('todoTabs');
-
-        console.log(savedTodoTabsState);
 
         if (savedData) {
             setAllTodos(savedData);
